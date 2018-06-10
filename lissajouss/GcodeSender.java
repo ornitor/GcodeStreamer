@@ -73,6 +73,7 @@ public class GcodeSender implements SerialPortEventListener {
             e.printStackTrace();
 
         }
+        configSandDrawing();
     }
 
 
@@ -123,15 +124,15 @@ public class GcodeSender implements SerialPortEventListener {
            write("$100=80\n");
            write("$101=80\n");
            write("$102=80\n");
-           write("$110=4001.000\n");
-           write("$111=4001.000\n");
-           write("$112=4001.000\n");
-           write("$120=200.000\n");
-           write("$121=200.000\n");
-           write("$122=200.000\n");
-           write("$130=4000.000\n");
-           write("$131=4000.000\n");
-           write("$132=4000.000\n");
+           write("$110=16001.000\n");
+           write("$111=16001.000\n");
+           write("$112=16001.000\n");
+           write("$120=400.000\n");
+           write("$121=400.000\n");
+           write("$122=400.000\n");
+           write("$130=16000.000\n");
+           write("$131=16000.000\n");
+           write("$132=16000.000\n");
        }
       
     public static void main(String[] args) throws Exception {
