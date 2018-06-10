@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=GcodeSender
+comment1.params=
+comment1.target=void\ initialize()
+comment2.params=str
+comment2.target=void\ write(java.lang.String)
+comment3.params=
+comment3.target=void\ close()
+comment4.params=
+comment4.target=java.lang.String\ getDado()
+comment5.params=oEvent
+comment5.target=void\ serialEvent(gnu.io.SerialPortEvent)
+comment6.params=
+comment6.target=void\ configSandDrawing()
+comment7.params=args
+comment7.target=void\ main(java.lang.String[])
+numComments=8
