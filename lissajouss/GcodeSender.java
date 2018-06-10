@@ -78,12 +78,17 @@ public class GcodeSender implements SerialPortEventListener {
 
     public void write(String str)
     {
-        try{
+       try{
             output.write(str.getBytes());
         }catch(IOException err){
                 err.printStackTrace();
         }
-    }
+       try{
+        while(!fgTemDado)
+            Thread.sleep(10);
+        System.out.println(str.trim()+ " " + getDado());
+       }catch(Exception e){e.printStackTrace();}
+}
 
     public synchronized void close() {
         if (serialPort != null) {
@@ -115,22 +120,20 @@ public class GcodeSender implements SerialPortEventListener {
     }
 
     public void configSandDrawing(){
-           String str;
-           str = "$100=80\n";
-           write(str);
+           write("$100=80\n");
            write("$101=80\n");
            write("$102=80\n");
-           write("$110=2000.000\n");
-           write("$111=2000.000\n");
-           write("$112=2000.000\n");
-           write("$120=50.000\n");
-           write("$121=50.000\n");
-           write("$122=50.000\n");
-
-        
+           write("$110=4001.000\n");
+           write("$111=4001.000\n");
+           write("$112=4001.000\n");
+           write("$120=200.000\n");
+           write("$121=200.000\n");
+           write("$122=200.000\n");
+           write("$130=4000.000\n");
+           write("$131=4000.000\n");
+           write("$132=4000.000\n");
        }
-       
-       
+      
     public static void main(String[] args) throws Exception {
         GcodeSender xmain = new GcodeSender();
         xmain.initialize();

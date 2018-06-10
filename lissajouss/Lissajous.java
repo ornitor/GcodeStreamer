@@ -21,10 +21,6 @@ public class Lissajous {
             y = 130 + 130*Math.sin(w2*i*dt - Math.PI/4 );
             String str = "G1 X"+ d.format(x).replace(",",".") + " Y" +  d.format(y).replace(",",".") + " F2000"+ "\n";
             gcoder.write(str);  
-            while(!gcoder.fgTemDado)
-                Thread.sleep(100);//TimeUnit.SECONDS.sleep(1);
-            System.out.println(i+ ": "+str.trim()+ " " + gcoder.getDado());
-
         }
         gcoder.close();
     }
