@@ -121,18 +121,23 @@ public class GcodeSender implements SerialPortEventListener {
     }
 
     public void configSandDrawing(){
-           write("$100=80\n");
+           write("$100=80\n");    //microsteps/mm
            write("$101=80\n");
            write("$102=80\n");
-           write("$110=16001.000\n");
+           write("$110=16001.000\n"); //  mm/min
            write("$111=16001.000\n");
            write("$112=16001.000\n");
-           write("$120=400.000\n");
-           write("$121=400.000\n");
-           write("$122=400.000\n");
-           write("$130=16000.000\n");
-           write("$131=16000.000\n");
-           write("$132=16000.000\n");
+           write("$120=4000.000\n");   // mm/s2??
+           write("$121=4000.000\n");
+           write("$122=4000.000\n");
+           write("$130=220.000\n");  // mm
+           write("$131=260.000\n");
+           write("$132=200.000\n");
+           write("$H\n");
+           write("G10 P0 L20 X0 Y0 Z0\n");
+           write("G0 X115 Y-130\n");
+           write("G10 P0 L20 X0 Y0 Z0\n");
+           
        }
       
     public static void main(String[] args) throws Exception {
