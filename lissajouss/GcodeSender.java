@@ -11,14 +11,14 @@ import gnu.io.SerialPortEventListener;
 
 import java.util.Enumeration;
 import java.util.concurrent.TimeUnit;
-
+import java.text.DecimalFormat;
 
 public class GcodeSender implements SerialPortEventListener {
     SerialPort serialPort;
     private static final String PORT_NAME[] = { 
+            "COM17", // Windows
             "/dev/ttyUSB0", // Linux
             "/dev/ttyACM0", // Raspberry Pi
-            "COM3", // Windows
             "COM10", // Windows
             "COM11", // Windows
             "/dev/tty.usbserial-A9007UX1", // Mac OS X
@@ -39,7 +39,8 @@ public class GcodeSender implements SerialPortEventListener {
     boolean fgGo = true;
     boolean fgTemDado = false;
     String  dado = "";
-
+    static DecimalFormat d = new DecimalFormat("0.0");
+ 
     public void initialize(){
        System.setProperty("gnu.io.rxtx.SerialPorts", PORT_NAME[0]);
         CommPortIdentifier portId = null;
@@ -74,8 +75,16 @@ public class GcodeSender implements SerialPortEventListener {
 
         }
         configSandDrawing();
+        while(fgTemDado)
+                System.out.println(getDado());
     }
 
+    public void sendG1(double x, double y, double f)
+    {
+            String str = "G1 X"+ d.format(x).replace(",",".") + " Y" +  d.format(y).replace(",",".") + 
+                        " F" +  d.format(f).replace(",",".") + "\n";  //2000
+            write(str); 
+    }
 
     public void write(String str)
     {
@@ -135,7 +144,7 @@ public class GcodeSender implements SerialPortEventListener {
            write("$132=200.000\n");
            write("$H\n");
            write("G10 P0 L20 X0 Y0 Z0\n");
-           write("G0 X115 Y-130\n");
+           write("G1 X115 Y-130 F4000 \n");
            write("G10 P0 L20 X0 Y0 Z0\n");
            
        }

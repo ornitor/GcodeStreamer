@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=PatternsColection
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=void\ polyTriangle()
+comment3.params=raio\ ang\ iv
+comment3.target=double[]\ triangle(double,\ double,\ int)
+numComments=4
