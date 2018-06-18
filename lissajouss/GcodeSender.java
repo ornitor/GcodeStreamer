@@ -17,6 +17,7 @@ public class GcodeSender implements SerialPortEventListener {
     SerialPort serialPort;
     private static final String PORT_NAME[] = { 
             "COM17", // Windows
+            "COM18", // Windows
             "/dev/ttyUSB0", // Linux
             "/dev/ttyACM0", // Raspberry Pi
             "COM10", // Windows
@@ -74,9 +75,13 @@ public class GcodeSender implements SerialPortEventListener {
             e.printStackTrace();
 
         }
-        configSandDrawing();
+       try{
+           Thread.sleep(3000);
+       }catch(Exception e){e.printStackTrace();}
         while(fgTemDado)
                 System.out.println(getDado());
+        configSandDrawing();
+        //configBancada();
     }
 
     public void sendG1(double x, double y, double f)
@@ -147,6 +152,21 @@ public class GcodeSender implements SerialPortEventListener {
            write("G1 X115 Y-130 F4000 \n");
            write("G10 P0 L20 X0 Y0 Z0\n");
            
+       }
+      
+    public void configBancada(){
+           write("$100=5.\n");    //microsteps/mm
+           write("$101=5.\n");
+           write("$102=5.\n");
+           write("$110=1000.000\n"); //  mm/min
+           write("$111=1000.000\n");
+           write("$112=1000.000\n");
+           write("$120=4000.000\n");   // mm/s2??
+           write("$121=4000.000\n");
+           write("$122=4000.000\n");
+           write("$130=600.000\n");  // mm
+           write("$131=600.000\n");
+           write("$132=600.000\n");
        }
       
     public static void main(String[] args) throws Exception {

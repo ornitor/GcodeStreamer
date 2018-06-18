@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Kock
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=void\ polyKock()
+comment3.params=lado
+comment3.target=void\ Kock(double)
+comment4.params=tamanho\ ang
+comment4.target=void\ ladoKock(double,\ double)
+numComments=5

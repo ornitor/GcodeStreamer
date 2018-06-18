@@ -3,38 +3,63 @@ import java.text.DecimalFormat;
 public class PatternsColection
 {
     
-    static double w1 = 11, w2 = 12;
-    static double dt=0.2/((w1+w2)/2);
-    
-    public double[] x;
+
+    public double x;
+    public double y;
+    static double L = 80;
+    GcodeSender gcoder;  
         
     
    public static void main(String[] args) throws Exception 
    {
-        polyTriangle();
+       PolyTriangle pt = new PolyTriangle();
+       pt.gcoder = new GcodeSender();
+       pt.gcoder.initialize();
+       //pt.drawPolyTriangle();
+       PatternsColection e = new PatternsColection();
+       e.gcoder = pt.gcoder;
+       e.quadrado(115);
+       e.circulo(115);
+       e.espiral();
+       Kock k = new Kock();
+       k.gcoder = pt.gcoder;
+       k.polyKock();
+       pt.gcoder.close();
    }
     
-   public static void polyTriangle(){
-        GcodeSender gcoder = new GcodeSender();
-        PatternsColection pt = new PatternsColection();
-        gcoder.initialize();
-        for(int k=0;k<10;k++){
-            for(int i=0;i<10;i++){
-                for(int j=0;j<3;j++){
-                    pt.x = pt.triangle(115.*(10.- k)/10., i*2.*Math.PI/30., j );
-                    gcoder.sendG1(pt.x[0], pt.x[1],8000); 
-                }
-            }
-        }
-        gcoder.close();
-    }
+   public void espiral(){
+       x = -115;
+       y = 0;
+       gcoder.sendG1(x, y,8000);
+
+       for(int k=0;k<20;k++){
+            for(int i=0;i<50;i++){
+                        x = -115.*((50*(20.-k) + (50.-i))/1050.)*Math.cos(2.*Math.PI*i/50.);
+                        y = -115.*((50*(20.-k) + (50.-i))/1050.)*Math.sin(2.*Math.PI*i/50.);
+                        gcoder.sendG1(x,y,8000);
+                    }
+       }
+  }
         
-    public double [] triangle( double raio, double ang, int iv)
-    {
-        double vertice[] = new double[2];
-        vertice[0] = raio*Math.cos(ang + iv*2*Math.PI/3);
-        vertice[1] = raio*Math.sin(ang + iv*2*Math.PI/3);
-        return vertice;
-    }
-    
+  public void quadrado(double lado){
+      gcoder.sendG1(-lado, lado,8000);
+      gcoder.sendG1(-lado, -lado,8000);
+      gcoder.sendG1(lado, -lado,8000);
+      gcoder.sendG1(lado, lado,8000);
+      gcoder.sendG1(-lado, lado,8000);    
+  }
+  
+    public void circulo(double lado){
+       x = -lado;
+       y = 0;
+       gcoder.sendG1(x, y,8000);    
+       for(int i=0;i<50;i++){
+                        x = -lado*Math.cos(2.*Math.PI*i/50.);
+                        y = -lado*Math.sin(2.*Math.PI*i/50.);
+                        gcoder.sendG1(x,y,8000);
+                    }
+   
+  }
+  
+
 }
