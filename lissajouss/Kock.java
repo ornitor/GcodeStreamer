@@ -11,13 +11,19 @@ public class Kock
    {
        Kock k = new Kock();
        k.gcoder = new GcodeSender();
-       k.gcoder.initialize();
+       k.gcoder.initialize(k.gcoder.getList()[0]);
        k.polyKock();
        k.gcoder.close();
    }
     
    public  void polyKock(){
         for(int k=0;k<10;k++){
+            Kock(220.*(10.- k)/10.);
+             }
+    }
+        
+  public  void polyKockInv(){
+        for(int k=9;k>=0;k--){
             Kock(220.*(10.- k)/10.);
              }
     }

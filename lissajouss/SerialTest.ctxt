@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=SerialTest
+comment1.params=portName
+comment1.target=void\ initialize(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String[]\ getList()
+comment3.params=l
+comment3.target=void\ printList(java.lang.String[])
+comment4.params=str
+comment4.target=void\ write(java.lang.String)
+comment5.params=
+comment5.target=void\ close()
+comment6.params=
+comment6.target=java.lang.String\ getDado()
+comment7.params=oEvent
+comment7.target=void\ serialEvent(gnu.io.SerialPortEvent)
+comment8.params=args
+comment8.target=void\ main(java.lang.String[])
+numComments=9

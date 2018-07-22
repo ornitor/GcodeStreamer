@@ -11,7 +11,7 @@ public class Lissajous {
     
     public static void main(String[] args) throws Exception {
         GcodeSender gcoder = new GcodeSender();
-        gcoder.initialize();
+        gcoder.initialize(gcoder.getList()[0]);
         for(int i=1;i<3000;i++){
             x = 115*Math.sin(w1*i*dt);
             y = 130*Math.sin(w2*i*dt); 

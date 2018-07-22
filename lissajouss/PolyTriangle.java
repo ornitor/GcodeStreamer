@@ -14,18 +14,30 @@ public class PolyTriangle
    {
        PolyTriangle pt = new PolyTriangle();
        pt.gcoder = new GcodeSender();
-       pt.gcoder.initialize();
+       pt.gcoder.initialize(pt.gcoder.getList()[0]);
+       pt.drawPolyTriangleInv();
        pt.drawPolyTriangle();
        pt.gcoder.close();
  
    }
     
    public void drawPolyTriangle(){
-        for(int k=0;k<10;k++){
+        for(int k=0;k<6;k++){
             for(int i=0;i<10;i++){
                 for(int j=0;j<3;j++){
                    x = triangle(115.*(10.- k)/10., i*2.*Math.PI/30., j );
-                   gcoder.sendG1(x[0], x[1],8000); 
+                   gcoder.sendG1(x[0], x[1],8000.); 
+                }
+            }
+        }
+    }
+   
+    public void drawPolyTriangleInv(){
+        for(int k=0;k<10;k++){
+            for(int i=0;i<10;i++){
+                for(int j=0;j<3;j++){
+                   x = triangle(115.*(k+1)/10., i*2.*Math.PI/30., j );
+                   gcoder.sendG1(x[0], x[1],8000.); 
                 }
             }
         }
